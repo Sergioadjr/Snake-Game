@@ -25,7 +25,7 @@ public class Tabela extends JPanel implements ActionListener {
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
 
-    private int dots;
+    private int tamanho;
     private int apple_x;
     private int apple_y;
 
@@ -70,9 +70,9 @@ public class Tabela extends JPanel implements ActionListener {
 
     private void inicioGame() {
 
-        dots = 3;
+        tamanho = 15;
 
-        for (int z = 0; z < dots; z++) {
+        for (int z = 0; z < tamanho; z++) {
             x[z] = 50 - z * 10;
             y[z] = 50;
         }
@@ -96,7 +96,7 @@ public class Tabela extends JPanel implements ActionListener {
 
             g.drawImage(apple, apple_x, apple_y, this);
 
-            for (int z = 0; z < dots; z++) {
+            for (int z = 0; z < tamanho; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
                 } else {
@@ -114,7 +114,7 @@ public class Tabela extends JPanel implements ActionListener {
 
     private void gameOver(Graphics g) {
 
-        String msg = "Noob.. tu perdeu!";
+        String msg = "Tente novamente";
         Font small = new Font("Helvetica", Font.BOLD, 20);
         FontMetrics metr = getFontMetrics(small);
 
@@ -127,14 +127,14 @@ public class Tabela extends JPanel implements ActionListener {
 
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
-            dots++;
+            tamanho++;
             localizacaoApple();
         }
     }
 
     private void movimentar() {
 
-        for (int z = dots; z > 0; z--) {
+        for (int z = tamanho; z > 0; z--) {
             x[z] = x[(z - 1)];
             y[z] = y[(z - 1)];
         }
@@ -158,7 +158,7 @@ public class Tabela extends JPanel implements ActionListener {
 
     private void checarColisao() {
 
-        for (int z = dots; z > 0; z--) {
+        for (int z = tamanho; z > 0; z--) {
 
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
                 inGame = false;
@@ -166,19 +166,23 @@ public class Tabela extends JPanel implements ActionListener {
         }
 
         if (y[0] >= B_HEIGHT) {
-            inGame = false;
+            y[0] = y[500];
+            inGame = true;
         }
 
         if (y[0] < 0) {
-            inGame = false;
+            y[0] = B_HEIGHT;
+            inGame = true;
         }
 
         if (x[0] >= B_WIDTH) {
-            inGame = false;
+            x[0] = x[500];
+            inGame = true;
         }
 
         if (x[0] < 0) {
-            inGame = false;
+            x[0] = B_WIDTH;
+            inGame = true;
         }
 
         if (!inGame) {
