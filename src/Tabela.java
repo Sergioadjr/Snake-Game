@@ -39,6 +39,7 @@ public class Tabela extends JPanel implements ActionListener {
     private Image corpo;
     private Image apple;
     private Image head;
+    private Image pedra;
 
     public Tabela() {
 
@@ -66,6 +67,9 @@ public class Tabela extends JPanel implements ActionListener {
 
         ImageIcon cabe = new ImageIcon("head.png");
         head = cabe.getImage();
+
+        ImageIcon obstaculo = new ImageIcon("pedra.png");
+        pedra = obstaculo.getImage();
     }
 
     private void inicioGame() {
@@ -95,6 +99,52 @@ public class Tabela extends JPanel implements ActionListener {
         if (inGame) {
 
             g.drawImage(apple, apple_x, apple_y, this);
+            
+            //CASO QUEIRA REDUZIR O CÓDIGO ---> for (int x = 2, y = 499 ; x< B_WIDTH && y>0; x+=17, y-=58 ) { 
+
+// PEDRAS NA COLUNA
+                g.drawImage(pedra, 110, 75, this);
+                g.drawImage(pedra, 110, 100, this);
+                g.drawImage(pedra, 110, 150, this);
+                g.drawImage(pedra, 110, 175, this);
+                g.drawImage(pedra, 110, 200, this);
+                g.drawImage(pedra, 110, 250, this);
+
+                g.drawImage(pedra, 110, 300, this);
+                g.drawImage(pedra, 110, 325, this);
+                g.drawImage(pedra, 110, 350, this);
+               
+                g.drawImage(pedra, 110, 400, this);
+                g.drawImage(pedra, 110, 425, this);
+// PEDRAS NA LINHA 
+                g.drawImage(pedra, 135, 75, this);
+                g.drawImage(pedra, 185, 75, this);
+                g.drawImage(pedra, 205, 75, this);
+                g.drawImage(pedra, 230, 75, this);
+
+                g.drawImage(pedra, 305, 75, this);
+                g.drawImage(pedra, 330, 75, this);
+                g.drawImage(pedra, 355, 75, this);
+
+                g.drawImage(pedra, 135, 250, this);
+                g.drawImage(pedra, 185, 250, this);
+                g.drawImage(pedra, 205, 250, this);
+                g.drawImage(pedra, 230, 250, this);
+
+                g.drawImage(pedra, 305, 250, this);
+                g.drawImage(pedra, 330, 250, this);
+                g.drawImage(pedra, 355, 250, this);
+
+                g.drawImage(pedra, 110, 425, this);
+                g.drawImage(pedra, 135, 425, this);
+                g.drawImage(pedra, 185, 425, this);
+                g.drawImage(pedra, 205, 425, this);
+                g.drawImage(pedra, 230, 425, this);
+                g.drawImage(pedra, 305, 425, this);
+                g.drawImage(pedra, 330, 425, this);
+                g.drawImage(pedra, 355, 425, this);
+                
+            // } FIM <-----------
 
             for (int z = 0; z < tamanho; z++) {
                 if (z == 0) {
@@ -167,22 +217,22 @@ public class Tabela extends JPanel implements ActionListener {
 
         if (y[0] >= B_HEIGHT) {
             y[0] = y[500];
-            inGame = true;
         }
-
+        
         if (y[0] < 0) {
             y[0] = B_HEIGHT;
-            inGame = true;
         }
 
         if (x[0] >= B_WIDTH) {
             x[0] = x[500];
-            inGame = true;
         }
 
         if (x[0] < 0) {
             x[0] = B_WIDTH;
-            inGame = true;
+        }
+
+        if ((head == pedra) || (corpo == pedra)) {
+            inGame = false;
         }
 
         if (!inGame) {
