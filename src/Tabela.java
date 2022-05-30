@@ -44,6 +44,8 @@ public class Tabela extends JPanel implements ActionListener {
     private Image head;
     private Image pedra;
 
+    private int vidas = 5; 
+
     public Tabela() {
 
         tabela();
@@ -55,7 +57,7 @@ public class Tabela extends JPanel implements ActionListener {
         setBackground(Color.black);
         setFocusable(true);
 
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT+100));
         Imagens();
         inicioGame();
     }
@@ -88,6 +90,7 @@ public class Tabela extends JPanel implements ActionListener {
 
         timer = new Timer(DELAY, this);
         timer.start();
+        
     }
 
     @Override
@@ -100,15 +103,13 @@ public class Tabela extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         if (inGame) {
-
+            g.drawString(vidas + " vidas", 50, 580);
             g.drawImage(apple, maca_x, maca_y, this);
 
             // CASO QUEIRA REDUZIR O CÓDIGO ---> for (int x = 2, y = 499 ; x< B_WIDTH &&
             // y>0; x+=17, y-=58 ) {
 
             // ALTERAÇÃO NAS PEDRAS DA COLUNA
-            g.drawImage(pedra, x_pedra[0] = 110, y_pedra[0] = 70, this);
-            g.drawImage(pedra,x_pedra[0] = 110, y_pedra[0] = 80, this);
             g.drawImage(pedra,x_pedra[0] = 110, y_pedra[0] = 90, this);
             g.drawImage(pedra, x_pedra[1] = 110, y_pedra[1] = 100, this);
             g.drawImage(pedra, x_pedra[2] = 110, y_pedra[2] = 110, this);
@@ -165,60 +166,9 @@ public class Tabela extends JPanel implements ActionListener {
             g.drawImage(pedra,x_pedra[53] = 360, y_pedra[53] = 450, this);
             g.drawImage(pedra,x_pedra[54] = 360, y_pedra[54] = 460, this);
             g.drawImage(pedra,x_pedra[55] = 360, y_pedra[55] = 470, this);
-
+            g.drawImage(pedra, x_pedra[56] = 110, y_pedra[56] = 70, this);
+            g.drawImage(pedra,x_pedra[57] = 110, y_pedra[57] = 80, this);
             // ALTERAÇÃO NAS PEDRAS DA LINHA
-            g.drawImage(pedra, x_pedra[56] = 70, y_pedra[56] = 100, this);
-            g.drawImage(pedra,x_pedra[57] = 80, y_pedra[57] = 100, this);
-            g.drawImage(pedra,x_pedra[58] = 90, y_pedra[58] = 100, this);
-            g.drawImage(pedra, x_pedra[59] = 100, y_pedra[59] = 100, this);
-            g.drawImage(pedra, x_pedra[60] = 110, y_pedra[60] = 100, this);
-            g.drawImage(pedra, x_pedra[61] = 120, y_pedra[61] = 100, this);
-            g.drawImage(pedra, x_pedra[2] = 130, y_pedra[62] = 100, this);
-            g.drawImage(pedra, x_pedra[63] = 140, y_pedra[63] = 100, this);
-            g.drawImage(pedra,x_pedra[64] = 150, y_pedra[64] = 100, this);
-            g.drawImage(pedra,x_pedra[65] = 210, y_pedra[65] = 100, this);
-            g.drawImage(pedra,x_pedra[66] = 220, y_pedra[66] = 100, this);
-            g.drawImage(pedra,x_pedra[67] = 230, y_pedra[67] = 100, this);
-            g.drawImage(pedra,x_pedra[68] = 240, y_pedra[68] = 100, this);
-            g.drawImage(pedra,x_pedra[69] = 250, y_pedra[69] = 100, this);
-            g.drawImage(pedra,x_pedra[70] = 290, y_pedra[70] = 100, this);
-            g.drawImage(pedra,x_pedra[71] = 300, y_pedra[71] = 100, this);
-            g.drawImage(pedra,x_pedra[72] = 310, y_pedra[72] = 100, this);
-            g.drawImage(pedra,x_pedra[73] = 320, y_pedra[73] = 100, this);
-            g.drawImage(pedra,x_pedra[74] = 330, y_pedra[74] = 100, this);
-            g.drawImage(pedra,x_pedra[75] = 340, y_pedra[75] = 100, this);
-            g.drawImage(pedra,x_pedra[76] = 350, y_pedra[76] = 100, this);
-            g.drawImage(pedra,x_pedra[77] = 360, y_pedra[77] = 100, this);
-            g.drawImage(pedra,x_pedra[78] = 370, y_pedra[78] = 100, this);
-            g.drawImage(pedra,x_pedra[79] = 380, y_pedra[79] = 100, this);
-            g.drawImage(pedra,x_pedra[80] = 410, y_pedra[80] = 100, this);
-            g.drawImage(pedra, x_pedra[81] = 420, y_pedra[81] = 100, this);
-            g.drawImage(pedra,x_pedra[82] = 430, y_pedra[82] = 100, this);
-            g.drawImage(pedra,x_pedra[83] = 440, y_pedra[83] = 100, this);
-            g.drawImage(pedra, x_pedra[84] = 450, y_pedra[84] = 100, this);
-            g.drawImage(pedra, x_pedra[85] = 460, y_pedra[85] = 100, this);
-            g.drawImage(pedra, x_pedra[86] = 470, y_pedra[86] = 100, this);
-            g.drawImage(pedra, x_pedra[87] = 480, y_pedra[87] = 100, this);
-
-            g.drawImage(pedra, x_pedra[88] = 260, y_pedra[88] = 350, this);
-            g.drawImage(pedra,x_pedra[89] = 270, y_pedra[89] = 350, this);
-            g.drawImage(pedra,x_pedra[90] = 330, y_pedra[90] = 350, this);
-            g.drawImage(pedra,x_pedra[91] = 340, y_pedra[91] = 350, this);
-            g.drawImage(pedra,x_pedra[92] = 350, y_pedra[92] = 350, this);
-            g.drawImage(pedra,x_pedra[93] = 360, y_pedra[93] = 350, this);
-            g.drawImage(pedra,x_pedra[94] = 370, y_pedra[94] = 350, this);
-            g.drawImage(pedra,x_pedra[95] = 380, y_pedra[95] = 350, this);
-            g.drawImage(pedra,x_pedra[96] = 390, y_pedra[96] = 350, this);
-            g.drawImage(pedra,x_pedra[97] = 400, y_pedra[97] = 350, this);
-            g.drawImage(pedra,x_pedra[98] = 410, y_pedra[98] = 350, this);
-            g.drawImage(pedra,x_pedra[99] = 210, y_pedra[99] = 350, this);
-            g.drawImage(pedra,x_pedra[100] = 220, y_pedra[100] = 350, this);
-            g.drawImage(pedra,x_pedra[101] = 450, y_pedra[101] = 350, this);
-            g.drawImage(pedra,x_pedra[102] = 460, y_pedra[102] = 350, this);
-            g.drawImage(pedra,x_pedra[103] = 470, y_pedra[103] = 350, this);
-            g.drawImage(pedra,x_pedra[104] = 480, y_pedra[104] = 350, this);
-            g.drawImage(pedra,x_pedra[105] = 490, y_pedra[105] = 350, this);
-
             // } FIM <-----------
 
             for (int z = 0; z < tamanhoSnake; z++) {
@@ -240,11 +190,11 @@ public class Tabela extends JPanel implements ActionListener {
     private void gameOver(Graphics g) {
 
         String msg = "Tente novamente";
-        Font small = new Font("Helvetica", Font.BOLD, 20);
-        FontMetrics metr = getFontMetrics(small);
+        Font bigFont = new Font("Helvetica", Font.BOLD, 50);
+        FontMetrics metr = getFontMetrics(bigFont);
 
         g.setColor(Color.white);
-        g.setFont(small);
+        g.setFont(bigFont);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
     }
 
@@ -281,12 +231,22 @@ public class Tabela extends JPanel implements ActionListener {
         }
     }
 
+
+    private void verificaVida(){
+        if(vidas < 0){
+            inGame = false;
+        }
+    }
+
     private void checarColisao() {
 
         for (int z = tamanhoSnake; z > 0; z--) {
 
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
-                inGame = false;
+                vidas--;
+                verificaVida();
+                inicioGame();
+                timer.stop();
             }
         }
 
@@ -306,9 +266,12 @@ public class Tabela extends JPanel implements ActionListener {
             x[0] = B_WIDTH;
         }
 
-        for (int i = 0; i < 105; i++) {
+        for (int i = 0; i < 57; i++) {
             if ((y[0] == y_pedra[i]) && (x[0] == x_pedra[i])) {
-                inGame = false;
+                vidas--;
+                verificaVida();
+                inicioGame();
+                timer.stop();
             }
         }
 
@@ -318,12 +281,20 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void localizacaoApple() {
-
         int r = (int) (Math.random() * RAND_POS);
         maca_x = ((r * DOT_SIZE));
 
         r = (int) (Math.random() * RAND_POS);
         maca_y = ((r * DOT_SIZE));
+        checarMacaObstaculo();
+    }
+
+    private void checarMacaObstaculo(){
+        for (int i = 0; i < 57 ; i++) {    
+            if ((x_pedra [0] == maca_x) && (y_pedra [0] == maca_y)) {
+                localizacaoApple();       
+            }
+        }
     }
 
     @Override
