@@ -31,6 +31,7 @@ public class Tabela extends JPanel implements ActionListener {
     private int tamanhoSnake;
     private int maca_x;
     private int maca_y;
+    private int contadorMaca =0;
 
     private boolean direcaoEsquerda = false;
     private boolean direcaoDireita = true;
@@ -96,7 +97,9 @@ public class Tabela extends JPanel implements ActionListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        Font smallFont = new Font("Helvetica", Font.BOLD, 17);
+        g.setColor(Color.white);
+        g.setFont(smallFont);
         doDrawing(g);
     }
 
@@ -166,7 +169,7 @@ public class Tabela extends JPanel implements ActionListener {
             g.drawImage(pedra,x_pedra[53] = 360, y_pedra[53] = 450, this);
             g.drawImage(pedra,x_pedra[54] = 360, y_pedra[54] = 460, this);
             g.drawImage(pedra,x_pedra[55] = 360, y_pedra[55] = 470, this);
-            g.drawImage(pedra, x_pedra[56] = 110, y_pedra[56] = 70, this);
+            g.drawImage(pedra,x_pedra[56] = 110, y_pedra[56] = 70, this);
             g.drawImage(pedra,x_pedra[57] = 110, y_pedra[57] = 80, this);
             // ALTERAÇÃO NAS PEDRAS DA LINHA
             // } FIM <-----------
@@ -180,9 +183,9 @@ public class Tabela extends JPanel implements ActionListener {
             }
 
             Toolkit.getDefaultToolkit().sync();
-
+            g.drawString(contadorMaca + " Maças", 150, 580);
+            // MENSAGEM DO TEMPO
         } else {
-
             gameOver(g);
         }
     }
@@ -199,11 +202,14 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void checarApple() {
-
         if ((x[0] == maca_x) && (y[0] == maca_y)) {
-
             tamanhoSnake++;
             localizacaoApple();
+            contadorMaca++;
+            if (contadorMaca==5) {
+                vidas++;
+                contadorMaca=0;
+            }
         }
     }
 
@@ -243,10 +249,7 @@ public class Tabela extends JPanel implements ActionListener {
         for (int z = tamanhoSnake; z > 0; z--) {
 
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
-                vidas--;
-                verificaVida();
-                inicioGame();
-                timer.stop();
+                reset();
             }
         }
 
@@ -266,18 +269,28 @@ public class Tabela extends JPanel implements ActionListener {
             x[0] = B_WIDTH;
         }
 
-        for (int i = 0; i < 57; i++) {
+        for (int i = 0; i < 58; i++) {
             if ((y[0] == y_pedra[i]) && (x[0] == x_pedra[i])) {
-                vidas--;
-                verificaVida();
-                inicioGame();
-                timer.stop();
+                reset();
             }
         }
 
         if (!inGame) {
             timer.stop();
         }
+    }
+
+    private void reset() {
+        vidas--;
+        verificaVida();
+        contadorMaca=0;
+        timer.stop();
+        inicioGame();
+        if (direcaoEsquerda) {
+            direcaoEsquerda=false;
+            direcaoDireita=true;
+        }
+
     }
 
     private void localizacaoApple() {
@@ -290,7 +303,7 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void checarMacaObstaculo(){
-        for (int i = 0; i < 57 ; i++) {    
+        for (int i = 0; i < 58 ; i++) {    
             if ((x_pedra [0] == maca_x) && (y_pedra [0] == maca_y)) {
                 localizacaoApple();       
             }
