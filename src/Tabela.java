@@ -20,7 +20,7 @@ public class Tabela extends JPanel implements ActionListener {
     private final int DOT_SIZE = 10;
     private final int ALL_DOTS = 1000;
     private final int RAND_POS = 29;
-    private final int DELAY = 34;
+    private final int DELAY = 100;
 
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
@@ -31,7 +31,9 @@ public class Tabela extends JPanel implements ActionListener {
     private int tamanhoSnake;
     private int maca_x;
     private int maca_y;
-    private int contadorMaca =0;
+    private int contadorMaca = 0;
+    private int contadorCronometro = 120000;
+
 
     private boolean direcaoEsquerda = false;
     private boolean direcaoDireita = true;
@@ -45,7 +47,7 @@ public class Tabela extends JPanel implements ActionListener {
     private Image head;
     private Image pedra;
 
-    private int vidas = 5; 
+    private int vidas = 5;
 
     public Tabela() {
 
@@ -58,7 +60,7 @@ public class Tabela extends JPanel implements ActionListener {
         setBackground(Color.black);
         setFocusable(true);
 
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT+100));
+        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT + 100));
         Imagens();
         inicioGame();
     }
@@ -79,7 +81,6 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void inicioGame() {
-
         tamanhoSnake = 10;
 
         for (int z = 0; z < tamanhoSnake; z++) {
@@ -91,7 +92,6 @@ public class Tabela extends JPanel implements ActionListener {
 
         timer = new Timer(DELAY, this);
         timer.start();
-        
     }
 
     @Override
@@ -106,74 +106,74 @@ public class Tabela extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         if (inGame) {
-            g.drawString(vidas + " vidas", 50, 580);
+            g.drawString(vidas + " vidas", 50, 540);
             g.drawImage(apple, maca_x, maca_y, this);
 
             // CASO QUEIRA REDUZIR O CÓDIGO ---> for (int x = 2, y = 499 ; x< B_WIDTH &&
             // y>0; x+=17, y-=58 ) {
-
+            {
             // ALTERAÇÃO NAS PEDRAS DA COLUNA
-            g.drawImage(pedra,x_pedra[0] = 110, y_pedra[0] = 90, this);
+            g.drawImage(pedra, x_pedra[0] = 110, y_pedra[0] = 90, this);
             g.drawImage(pedra, x_pedra[1] = 110, y_pedra[1] = 100, this);
             g.drawImage(pedra, x_pedra[2] = 110, y_pedra[2] = 110, this);
             g.drawImage(pedra, x_pedra[3] = 110, y_pedra[3] = 120, this);
             g.drawImage(pedra, x_pedra[4] = 110, y_pedra[4] = 130, this);
             g.drawImage(pedra, x_pedra[5] = 110, y_pedra[5] = 140, this);
-            g.drawImage(pedra,x_pedra[6] = 110, y_pedra[6] = 150, this);
-            g.drawImage(pedra,x_pedra[7] = 110, y_pedra[7] = 240, this);
-            g.drawImage(pedra,x_pedra[8] = 110, y_pedra[8] = 250, this);
-            g.drawImage(pedra,x_pedra[9] = 110, y_pedra[9] = 260, this);
-            g.drawImage(pedra,x_pedra[10] = 110, y_pedra[10] = 270, this);
-            g.drawImage(pedra,x_pedra[11] = 110, y_pedra[11] = 280, this);
-            g.drawImage(pedra,x_pedra[12] = 110, y_pedra[12] = 290, this);
-            g.drawImage(pedra,x_pedra[13] = 110, y_pedra[13] = 300, this);
-            g.drawImage(pedra,x_pedra[14] = 110, y_pedra[14] = 310, this);
-            g.drawImage(pedra,x_pedra[15] = 110, y_pedra[15] = 320, this);
-            g.drawImage(pedra,x_pedra[16] = 110, y_pedra[16] = 380, this);
-            g.drawImage(pedra,x_pedra[17] = 110, y_pedra[17] = 390, this);
-            g.drawImage(pedra,x_pedra[18] = 110, y_pedra[18] = 400, this);
-            g.drawImage(pedra,x_pedra[19] = 110, y_pedra[19] = 410, this);
-            g.drawImage(pedra,x_pedra[20] = 110, y_pedra[20] = 420, this);
-            g.drawImage(pedra,x_pedra[21] = 110, y_pedra[21] = 430, this);
-            g.drawImage(pedra,x_pedra[22] = 110, y_pedra[22] = 440, this);
-            g.drawImage(pedra,x_pedra[23] = 110, y_pedra[23] = 450, this);
-            g.drawImage(pedra,x_pedra[24] = 110, y_pedra[24] = 460, this);
-            g.drawImage(pedra,x_pedra[25] = 110, y_pedra[25] = 470, this);
+            g.drawImage(pedra, x_pedra[6] = 110, y_pedra[6] = 150, this);
+            g.drawImage(pedra, x_pedra[7] = 110, y_pedra[7] = 240, this);
+            g.drawImage(pedra, x_pedra[8] = 110, y_pedra[8] = 250, this);
+            g.drawImage(pedra, x_pedra[9] = 110, y_pedra[9] = 260, this);
+            g.drawImage(pedra, x_pedra[10] = 110, y_pedra[10] = 270, this);
+            g.drawImage(pedra, x_pedra[11] = 110, y_pedra[11] = 280, this);
+            g.drawImage(pedra, x_pedra[12] = 110, y_pedra[12] = 290, this);
+            g.drawImage(pedra, x_pedra[13] = 110, y_pedra[13] = 300, this);
+            g.drawImage(pedra, x_pedra[14] = 110, y_pedra[14] = 310, this);
+            g.drawImage(pedra, x_pedra[15] = 110, y_pedra[15] = 320, this);
+            g.drawImage(pedra, x_pedra[16] = 110, y_pedra[16] = 380, this);
+            g.drawImage(pedra, x_pedra[17] = 110, y_pedra[17] = 390, this);
+            g.drawImage(pedra, x_pedra[18] = 110, y_pedra[18] = 400, this);
+            g.drawImage(pedra, x_pedra[19] = 110, y_pedra[19] = 410, this);
+            g.drawImage(pedra, x_pedra[20] = 110, y_pedra[20] = 420, this);
+            g.drawImage(pedra, x_pedra[21] = 110, y_pedra[21] = 430, this);
+            g.drawImage(pedra, x_pedra[22] = 110, y_pedra[22] = 440, this);
+            g.drawImage(pedra, x_pedra[23] = 110, y_pedra[23] = 450, this);
+            g.drawImage(pedra, x_pedra[24] = 110, y_pedra[24] = 460, this);
+            g.drawImage(pedra, x_pedra[25] = 110, y_pedra[25] = 470, this);
             g.drawImage(pedra, x_pedra[26] = 360, y_pedra[26] = 160, this);
             g.drawImage(pedra, x_pedra[27] = 360, y_pedra[27] = 60, this);
             g.drawImage(pedra, x_pedra[28] = 360, y_pedra[28] = 70, this);
-            g.drawImage(pedra,x_pedra[29] = 360, y_pedra[29] = 80, this);
-            g.drawImage(pedra,x_pedra[30] = 360, y_pedra[30] = 90, this);
+            g.drawImage(pedra, x_pedra[29] = 360, y_pedra[29] = 80, this);
+            g.drawImage(pedra, x_pedra[30] = 360, y_pedra[30] = 90, this);
             g.drawImage(pedra, x_pedra[31] = 360, y_pedra[31] = 100, this);
             g.drawImage(pedra, x_pedra[32] = 360, y_pedra[32] = 110, this);
             g.drawImage(pedra, x_pedra[33] = 360, y_pedra[33] = 120, this);
             g.drawImage(pedra, x_pedra[34] = 360, y_pedra[34] = 130, this);
             g.drawImage(pedra, x_pedra[35] = 360, y_pedra[35] = 140, this);
-            g.drawImage(pedra,x_pedra[36] = 360, y_pedra[36] = 150, this);
-            g.drawImage(pedra,x_pedra[37] = 360, y_pedra[37] = 240, this);
-            g.drawImage(pedra,x_pedra[38] = 360, y_pedra[38] = 250, this);
-            g.drawImage(pedra,x_pedra[39] = 360, y_pedra[39] = 260, this);
-            g.drawImage(pedra,x_pedra[40] = 360, y_pedra[40] = 270, this);
-            g.drawImage(pedra,x_pedra[41] = 360, y_pedra[41] = 280, this);
-            g.drawImage(pedra,x_pedra[42] = 360, y_pedra[42] = 290, this);
-            g.drawImage(pedra,x_pedra[43] = 360, y_pedra[43] = 300, this);
-            g.drawImage(pedra,x_pedra[44] = 360, y_pedra[44] = 310, this);
-            g.drawImage(pedra,x_pedra[45] = 360, y_pedra[45] = 320, this);
-            g.drawImage(pedra,x_pedra[46] = 360, y_pedra[46] = 380, this);
-            g.drawImage(pedra,x_pedra[47] = 360, y_pedra[47] = 390, this);
-            g.drawImage(pedra,x_pedra[48] = 360, y_pedra[48] = 400, this);
-            g.drawImage(pedra,x_pedra[49] = 360, y_pedra[49] = 410, this);
-            g.drawImage(pedra,x_pedra[50] = 360, y_pedra[50] = 420, this);
-            g.drawImage(pedra,x_pedra[51] = 360, y_pedra[51] = 430, this);
-            g.drawImage(pedra,x_pedra[52] = 360, y_pedra[52] = 440, this);
-            g.drawImage(pedra,x_pedra[53] = 360, y_pedra[53] = 450, this);
-            g.drawImage(pedra,x_pedra[54] = 360, y_pedra[54] = 460, this);
-            g.drawImage(pedra,x_pedra[55] = 360, y_pedra[55] = 470, this);
-            g.drawImage(pedra,x_pedra[56] = 110, y_pedra[56] = 70, this);
-            g.drawImage(pedra,x_pedra[57] = 110, y_pedra[57] = 80, this);
+            g.drawImage(pedra, x_pedra[36] = 360, y_pedra[36] = 150, this);
+            g.drawImage(pedra, x_pedra[37] = 360, y_pedra[37] = 240, this);
+            g.drawImage(pedra, x_pedra[38] = 360, y_pedra[38] = 250, this);
+            g.drawImage(pedra, x_pedra[39] = 360, y_pedra[39] = 260, this);
+            g.drawImage(pedra, x_pedra[40] = 360, y_pedra[40] = 270, this);
+            g.drawImage(pedra, x_pedra[41] = 360, y_pedra[41] = 280, this);
+            g.drawImage(pedra, x_pedra[42] = 360, y_pedra[42] = 290, this);
+            g.drawImage(pedra, x_pedra[43] = 360, y_pedra[43] = 300, this);
+            g.drawImage(pedra, x_pedra[44] = 360, y_pedra[44] = 310, this);
+            g.drawImage(pedra, x_pedra[45] = 360, y_pedra[45] = 320, this);
+            g.drawImage(pedra, x_pedra[46] = 360, y_pedra[46] = 380, this);
+            g.drawImage(pedra, x_pedra[47] = 360, y_pedra[47] = 390, this);
+            g.drawImage(pedra, x_pedra[48] = 360, y_pedra[48] = 400, this);
+            g.drawImage(pedra, x_pedra[49] = 360, y_pedra[49] = 410, this);
+            g.drawImage(pedra, x_pedra[50] = 360, y_pedra[50] = 420, this);
+            g.drawImage(pedra, x_pedra[51] = 360, y_pedra[51] = 430, this);
+            g.drawImage(pedra, x_pedra[52] = 360, y_pedra[52] = 440, this);
+            g.drawImage(pedra, x_pedra[53] = 360, y_pedra[53] = 450, this);
+            g.drawImage(pedra, x_pedra[54] = 360, y_pedra[54] = 460, this);
+            g.drawImage(pedra, x_pedra[55] = 360, y_pedra[55] = 470, this);
+            g.drawImage(pedra, x_pedra[56] = 110, y_pedra[56] = 70, this);
+            g.drawImage(pedra, x_pedra[57] = 110, y_pedra[57] = 80, this);
             // ALTERAÇÃO NAS PEDRAS DA LINHA
             // } FIM <-----------
-
+            }
             for (int z = 0; z < tamanhoSnake; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
@@ -183,8 +183,14 @@ public class Tabela extends JPanel implements ActionListener {
             }
 
             Toolkit.getDefaultToolkit().sync();
-            g.drawString(contadorMaca + " Maças", 150, 580);
-            // MENSAGEM DO TEMPO
+            g.drawString(contadorMaca + " Maças", 150, 540);
+            g.drawString("Tempo: " + ((contadorCronometro/1000))/60 + ":"+ ((contadorCronometro/1000)%60), 360,540);
+            
+            Font smallFont2 = new Font ("Helvetica", Font.BOLD, 13);
+            g.setFont(smallFont2);
+            g.drawString("Acadêmicos: Anderson; Gabriel; João Pedro; Lenícia e Sérgio",50,580);
+            
+
         } else {
             gameOver(g);
         }
@@ -206,9 +212,9 @@ public class Tabela extends JPanel implements ActionListener {
             tamanhoSnake++;
             localizacaoApple();
             contadorMaca++;
-            if (contadorMaca==5) {
+            if (contadorMaca == 5) {
                 vidas++;
-                contadorMaca=0;
+                contadorMaca = 0;
             }
         }
     }
@@ -235,11 +241,15 @@ public class Tabela extends JPanel implements ActionListener {
         if (direcaoBaixo) {
             y[0] += DOT_SIZE;
         }
+        if (contadorCronometro >=0 ) {
+                contadorCronometro -=100;
+            }else {
+                inGame=false;
+            }
     }
 
-
-    private void verificaVida(){
-        if(vidas < 0){
+    private void verificaVida() {
+        if (vidas < 0) {
             inGame = false;
         }
     }
@@ -283,12 +293,12 @@ public class Tabela extends JPanel implements ActionListener {
     private void reset() {
         vidas--;
         verificaVida();
-        contadorMaca=0;
+        contadorMaca = 0;
         timer.stop();
         inicioGame();
         if (direcaoEsquerda) {
-            direcaoEsquerda=false;
-            direcaoDireita=true;
+            direcaoEsquerda = false;
+            direcaoDireita = true;
         }
 
     }
@@ -302,10 +312,10 @@ public class Tabela extends JPanel implements ActionListener {
         checarMacaObstaculo();
     }
 
-    private void checarMacaObstaculo(){
-        for (int i = 0; i < 58 ; i++) {    
-            if ((x_pedra [0] == maca_x) && (y_pedra [0] == maca_y)) {
-                localizacaoApple();       
+    private void checarMacaObstaculo() {
+        for (int i = 0; i < 58; i++) {
+            if ((x_pedra[0] == maca_x) && (y_pedra[0] == maca_y)) {
+                localizacaoApple();
             }
         }
     }
