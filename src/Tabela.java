@@ -25,8 +25,8 @@ public class Tabela extends JPanel implements ActionListener {
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
 
-    private int x_pedra[] = new int[10];
-    private int y_pedra[] = new int[10];
+    private int x_pedra[] = new int[ALL_DOTS];
+    private int y_pedra[] = new int[ALL_DOTS];
     private int quantidadePedras = 0;
 
     private int tamanhoSnake;
