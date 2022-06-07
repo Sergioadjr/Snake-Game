@@ -212,7 +212,7 @@ public class Tabela extends JPanel implements ActionListener {
             tamanhoSnake++;
             localizacaoApple();
             contadorMaca++;
-            if (contadorMaca == 5) {
+            if (contadorMaca == 3) {
                 vidas++;
                 contadorMaca = 0;
             }
