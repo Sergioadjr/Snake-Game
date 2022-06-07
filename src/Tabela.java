@@ -32,7 +32,8 @@ public class Tabela extends JPanel implements ActionListener {
     private int tamanhoSnake;
     private int maca_x;
     private int maca_y;
-    private int contadorMaca = 0;
+    private int totalMacas = 0;
+    private int macasColetadas = 0;
     private int contadorCronometro = 120000;
 
 
@@ -124,7 +125,7 @@ public class Tabela extends JPanel implements ActionListener {
             }
 
             Toolkit.getDefaultToolkit().sync();
-            g.drawString(contadorMaca + " Maças", 150, 540);
+            g.drawString(macasColetadas + " Maças", 150, 540);
             g.drawString("Tempo: " + ((contadorCronometro/1000))/60 + ":"+ ((contadorCronometro/1000)%60), 360,540);
             
             Font smallFont2 = new Font ("Helvetica", Font.BOLD, 13);
@@ -152,10 +153,10 @@ public class Tabela extends JPanel implements ActionListener {
         if ((x[0] == maca_x) && (y[0] == maca_y)) {
             tamanhoSnake++;
             localizacaoApple();
-            contadorMaca++;
-            if (contadorMaca == 3) {
+            macasColetadas++;
+            if (macasColetadas == 3) {
                 vidas++;
-                contadorMaca = 0;
+                macasColetadas = 0;
             }
         }
     }
@@ -234,7 +235,7 @@ public class Tabela extends JPanel implements ActionListener {
     private void reset() {
         vidas--;
         verificaVida();
-        contadorMaca = 0;
+        macasColetadas = 0;
         timer.stop();
         inicioGame();
         if (direcaoEsquerda) {
@@ -244,18 +245,18 @@ public class Tabela extends JPanel implements ActionListener {
 
     }
 
-    private String pedraOuNao() {
+    private boolean objetoOuNao() {
         int r = (int) (Math.random() * 100);
         if (r <= 1) {
-            return "pedra";
+            return true;
         }
-        return "nao";
+        return false;
     }
 
     private void localizacaoPedra() {
         for (int x = 0; x < B_WIDTH; x += 10) {
             for (int y = 0; y < B_HEIGHT; y += 10){
-                if (pedraOuNao() == "pedra") {
+                if (objetoOuNao()) {
                     if (quantidadePedras >= 10) {
                         break;
                     }
