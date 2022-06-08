@@ -34,6 +34,7 @@ public class Tabela extends JPanel implements ActionListener {
     private int maca_y[] = new int[ALL_DOTS];
     private int totalMacas = 0;
     private int macasColetadas = 0;
+    private int totalMacasColetadas = 0;
     private int contadorCronometro = 120000;
 
 
@@ -112,6 +113,8 @@ public class Tabela extends JPanel implements ActionListener {
             g.drawString(vidas + " vidas", 50, 540);
             for (int i = 0; i < totalMacas; i++) {
                 g.drawImage(apple, maca_x[i], maca_y[i], this);
+                if (tamanhoSnake > 12) {
+                }
             }
 
             for (int i = 0; i < quantidadePedras; i++) {
@@ -156,6 +159,9 @@ public class Tabela extends JPanel implements ActionListener {
             if ((x[0] == maca_x[i]) && (y[0] == maca_y[i])) {
                 tamanhoSnake++;
                 macasColetadas++;
+                maca_x[i] = -20;
+                maca_y[i] = -20;
+                totalMacasColetadas++;
                 if (macasColetadas == 3) {
                     vidas++;
                     macasColetadas = 0;
