@@ -30,8 +30,8 @@ public class Tabela extends JPanel implements ActionListener {
     private int quantidadePedras = 0;
 
     private int tamanhoSnake;
-    private int maca_x;
-    private int maca_y;
+    private int maca_x[] = new int[ALL_DOTS];
+    private int maca_y[] = new int[ALL_DOTS];
     private int totalMacas = 0;
     private int macasColetadas = 0;
     private int contadorCronometro = 120000;
@@ -110,7 +110,9 @@ public class Tabela extends JPanel implements ActionListener {
 
         if (inGame) {
             g.drawString(vidas + " vidas", 50, 540);
-            g.drawImage(apple, maca_x, maca_y, this);
+            for (int i = 0; i < totalMacas; i++) {
+                g.drawImage(apple, maca_x[i], maca_y[i], this);
+            }
 
             for (int i = 0; i < quantidadePedras; i++) {
                 g.drawImage(pedra, x_pedra[i], y_pedra[i], this);
@@ -150,13 +152,14 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void checarApple() {
-        if ((x[0] == maca_x) && (y[0] == maca_y)) {
-            tamanhoSnake++;
-            localizacaoApple();
-            macasColetadas++;
-            if (macasColetadas == 3) {
-                vidas++;
-                macasColetadas = 0;
+        for (int i = 0; i < totalMacas; i++) {
+            if ((x[0] == maca_x[i]) && (y[0] == maca_y[i])) {
+                tamanhoSnake++;
+                macasColetadas++;
+                if (macasColetadas == 3) {
+                    vidas++;
+                    macasColetadas = 0;
+                }
             }
         }
     }
@@ -269,20 +272,29 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void localizacaoApple() {
-        int r = (int) (Math.random() * RAND_POS);
-        maca_x = ((r * DOT_SIZE));
-
-        r = (int) (Math.random() * RAND_POS);
-        maca_y = ((r * DOT_SIZE));
-        checarMacaObstaculo();
-    }
-
-    private void checarMacaObstaculo() {
-        for (int i = 0; i < 58; i++) {
-            if ((x_pedra[0] == maca_x) && (y_pedra[0] == maca_y)) {
-                localizacaoApple();
+        for (int x = 0; x < B_WIDTH; x += 10) {
+            for (int y = 0; y < B_HEIGHT; y += 10){
+                if (objetoOuNao()) {
+                    if (totalMacas >= 15) {
+                        break;
+                    }
+                    if (checarMacaObstaculo(x, y)) {
+                        maca_x[totalMacas] = x;
+                        maca_y[totalMacas] = y;
+                        totalMacas++;
+                    }
+                }
             }
         }
+    }
+
+    private boolean checarMacaObstaculo(int x, int y) {
+        for (int i = 0; i < totalMacas; i++) {
+            if ((x_pedra[i] == x) && (y_pedra[i] == y)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
