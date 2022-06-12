@@ -39,9 +39,10 @@ public class Tabela extends JPanel implements ActionListener {
 
 
     private boolean direcaoEsquerda = false;
-    private boolean direcaoDireita = true;
+    private boolean direcaoDireita = false;
     private boolean direcaoCima = false;
     private boolean direcaoBaixo = false;
+
     private boolean inGame = true;
 
     private Timer timer;
@@ -85,6 +86,8 @@ public class Tabela extends JPanel implements ActionListener {
 
     private void inicioGame() {
         tamanhoSnake = 10;
+
+        direcaoAleatoria();
 
         for (int z = 0; z < tamanhoSnake; z++) {
             x[z] = 50 - z * 10;
@@ -143,6 +146,28 @@ public class Tabela extends JPanel implements ActionListener {
 
         } else {
             gameOver(g);
+        }
+    }
+
+    private void direcaoAleatoria() {
+         int aleatorio = (int) (Math.random() * 4) + 1;
+
+        switch (aleatorio) {
+            case 1:
+                direcaoEsquerda = true;
+                break;
+    
+            case 2: 
+            direcaoDireita = true;
+            break;
+    
+            case 3: 
+                direcaoCima = true;
+                break;
+    
+            case 4:
+                direcaoBaixo = true;
+                break;
         }
     }
 
