@@ -137,6 +137,9 @@ public class Tabela extends JPanel implements ActionListener {
             g.setFont(smallFont2);
             g.drawString("Acadêmicos: Anderson; Gabriel; João Pedro; Lenícia e Sérgio",50,580);
             
+            if (totalMacasColetadas >= totalMacas) {
+                inGame = false;
+            }
 
         } else {
             gameOver(g);
@@ -146,6 +149,11 @@ public class Tabela extends JPanel implements ActionListener {
     private void gameOver(Graphics g) {
 
         String msg = "Tente novamente";
+
+        if (totalMacasColetadas >= totalMacas) {
+            msg = "Você venceu!";
+        }
+
         Font bigFont = new Font("Helvetica", Font.BOLD, 50);
         FontMetrics metr = getFontMetrics(bigFont);
 
