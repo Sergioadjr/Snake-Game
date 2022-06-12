@@ -35,13 +35,14 @@ public class Tabela extends JPanel implements ActionListener {
     private int totalMacas = 0;
     private int macasColetadas = 0;
     private int totalMacasColetadas = 0;
-    private int contadorCronometro = 120000;
+    private int contadorCronometro = 30000;
 
 
     private boolean direcaoEsquerda = false;
-    private boolean direcaoDireita = true;
+    private boolean direcaoDireita = false;
     private boolean direcaoCima = false;
     private boolean direcaoBaixo = false;
+
     private boolean inGame = true;
 
     private Timer timer;
@@ -85,6 +86,8 @@ public class Tabela extends JPanel implements ActionListener {
 
     private void inicioGame() {
         tamanhoSnake = 10;
+
+        direcaoAleatoria();
 
         for (int z = 0; z < tamanhoSnake; z++) {
             x[z] = 50 - z * 10;
@@ -137,15 +140,45 @@ public class Tabela extends JPanel implements ActionListener {
             g.setFont(smallFont2);
             g.drawString("Acadêmicos: Anderson; Gabriel; João Pedro; Lenícia e Sérgio",50,580);
             
+            if (totalMacasColetadas >= totalMacas) {
+                inGame = false;
+            }
 
         } else {
             gameOver(g);
         }
     }
 
+    private void direcaoAleatoria() {
+         int aleatorio = (int) (Math.random() * 4) + 1;
+
+        switch (aleatorio) {
+            case 1:
+                direcaoEsquerda = true;
+                break;
+    
+            case 2: 
+            direcaoDireita = true;
+            break;
+    
+            case 3: 
+                direcaoCima = true;
+                break;
+    
+            case 4:
+                direcaoBaixo = true;
+                break;
+        }
+    }
+
     private void gameOver(Graphics g) {
 
         String msg = "Tente novamente";
+
+        if (totalMacasColetadas >= totalMacas) {
+            msg = "Você venceu!";
+        }
+
         Font bigFont = new Font("Helvetica", Font.BOLD, 50);
         FontMetrics metr = getFontMetrics(bigFont);
 
@@ -255,7 +288,7 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private boolean objetoOuNao() {
-        int r = (int) (Math.random() * 100);
+        int r = (int) (Math.random() * 250);
         if (r <= 1) {
             return true;
         }
