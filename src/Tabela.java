@@ -35,7 +35,7 @@ public class Tabela extends JPanel implements ActionListener {
     private int totalMacas = 0;
     private int macasColetadas = 0;
     private int totalMacasColetadas = 0;
-    private int contadorCronometro = 120000;
+    private int contadorCronometro = 30000;
 
 
     private boolean direcaoEsquerda = false;
@@ -263,7 +263,7 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private boolean objetoOuNao() {
-        int r = (int) (Math.random() * 100);
+        int r = (int) (Math.random() * 250);
         if (r <= 1) {
             return true;
         }
