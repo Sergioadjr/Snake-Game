@@ -27,14 +27,11 @@ public class Tabela extends JPanel implements ActionListener {
 
     private int x_pedra[] = new int[ALL_DOTS];
     private int y_pedra[] = new int[ALL_DOTS];
-    private int quantidadePedras = 0;
 
     private int tamanhoSnake;
-    private int maca_x[] = new int[ALL_DOTS];
-    private int maca_y[] = new int[ALL_DOTS];
-    private int totalMacas = 0;
-    private int macasColetadas = 0;
-    private int totalMacasColetadas = 0;
+    private int maca_x;
+    private int maca_y;
+    private int contadorMaca = 0;
     private int contadorCronometro = 120000;
 
 
@@ -92,7 +89,6 @@ public class Tabela extends JPanel implements ActionListener {
         }
 
         localizacaoApple();
-        localizacaoPedra();
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -111,16 +107,73 @@ public class Tabela extends JPanel implements ActionListener {
 
         if (inGame) {
             g.drawString(vidas + " vidas", 50, 540);
-            for (int i = 0; i < totalMacas; i++) {
-                g.drawImage(apple, maca_x[i], maca_y[i], this);
-                if (tamanhoSnake > 12) {
-                }
-            }
+            g.drawImage(apple, maca_x, maca_y, this);
 
-            for (int i = 0; i < quantidadePedras; i++) {
-                g.drawImage(pedra, x_pedra[i], y_pedra[i], this);
+            // CASO QUEIRA REDUZIR O CÓDIGO ---> for (int x = 2, y = 499 ; x< B_WIDTH &&
+            // y>0; x+=17, y-=58 ) {
+            {
+            // ALTERAÇÃO NAS PEDRAS DA COLUNA
+            g.drawImage(pedra, x_pedra[0] = 110, y_pedra[0] = 90, this);
+            g.drawImage(pedra, x_pedra[1] = 110, y_pedra[1] = 100, this);
+            g.drawImage(pedra, x_pedra[2] = 110, y_pedra[2] = 110, this);
+            g.drawImage(pedra, x_pedra[3] = 110, y_pedra[3] = 120, this);
+            g.drawImage(pedra, x_pedra[4] = 110, y_pedra[4] = 130, this);
+            g.drawImage(pedra, x_pedra[5] = 110, y_pedra[5] = 140, this);
+            g.drawImage(pedra, x_pedra[6] = 110, y_pedra[6] = 150, this);
+            g.drawImage(pedra, x_pedra[7] = 110, y_pedra[7] = 240, this);
+            g.drawImage(pedra, x_pedra[8] = 110, y_pedra[8] = 250, this);
+            g.drawImage(pedra, x_pedra[9] = 110, y_pedra[9] = 260, this);
+            g.drawImage(pedra, x_pedra[10] = 110, y_pedra[10] = 270, this);
+            g.drawImage(pedra, x_pedra[11] = 110, y_pedra[11] = 280, this);
+            g.drawImage(pedra, x_pedra[12] = 110, y_pedra[12] = 290, this);
+            g.drawImage(pedra, x_pedra[13] = 110, y_pedra[13] = 300, this);
+            g.drawImage(pedra, x_pedra[14] = 110, y_pedra[14] = 310, this);
+            g.drawImage(pedra, x_pedra[15] = 110, y_pedra[15] = 320, this);
+            g.drawImage(pedra, x_pedra[16] = 110, y_pedra[16] = 380, this);
+            g.drawImage(pedra, x_pedra[17] = 110, y_pedra[17] = 390, this);
+            g.drawImage(pedra, x_pedra[18] = 110, y_pedra[18] = 400, this);
+            g.drawImage(pedra, x_pedra[19] = 110, y_pedra[19] = 410, this);
+            g.drawImage(pedra, x_pedra[20] = 110, y_pedra[20] = 420, this);
+            g.drawImage(pedra, x_pedra[21] = 110, y_pedra[21] = 430, this);
+            g.drawImage(pedra, x_pedra[22] = 110, y_pedra[22] = 440, this);
+            g.drawImage(pedra, x_pedra[23] = 110, y_pedra[23] = 450, this);
+            g.drawImage(pedra, x_pedra[24] = 110, y_pedra[24] = 460, this);
+            g.drawImage(pedra, x_pedra[25] = 110, y_pedra[25] = 470, this);
+            g.drawImage(pedra, x_pedra[26] = 360, y_pedra[26] = 160, this);
+            g.drawImage(pedra, x_pedra[27] = 360, y_pedra[27] = 60, this);
+            g.drawImage(pedra, x_pedra[28] = 360, y_pedra[28] = 70, this);
+            g.drawImage(pedra, x_pedra[29] = 360, y_pedra[29] = 80, this);
+            g.drawImage(pedra, x_pedra[30] = 360, y_pedra[30] = 90, this);
+            g.drawImage(pedra, x_pedra[31] = 360, y_pedra[31] = 100, this);
+            g.drawImage(pedra, x_pedra[32] = 360, y_pedra[32] = 110, this);
+            g.drawImage(pedra, x_pedra[33] = 360, y_pedra[33] = 120, this);
+            g.drawImage(pedra, x_pedra[34] = 360, y_pedra[34] = 130, this);
+            g.drawImage(pedra, x_pedra[35] = 360, y_pedra[35] = 140, this);
+            g.drawImage(pedra, x_pedra[36] = 360, y_pedra[36] = 150, this);
+            g.drawImage(pedra, x_pedra[37] = 360, y_pedra[37] = 240, this);
+            g.drawImage(pedra, x_pedra[38] = 360, y_pedra[38] = 250, this);
+            g.drawImage(pedra, x_pedra[39] = 360, y_pedra[39] = 260, this);
+            g.drawImage(pedra, x_pedra[40] = 360, y_pedra[40] = 270, this);
+            g.drawImage(pedra, x_pedra[41] = 360, y_pedra[41] = 280, this);
+            g.drawImage(pedra, x_pedra[42] = 360, y_pedra[42] = 290, this);
+            g.drawImage(pedra, x_pedra[43] = 360, y_pedra[43] = 300, this);
+            g.drawImage(pedra, x_pedra[44] = 360, y_pedra[44] = 310, this);
+            g.drawImage(pedra, x_pedra[45] = 360, y_pedra[45] = 320, this);
+            g.drawImage(pedra, x_pedra[46] = 360, y_pedra[46] = 380, this);
+            g.drawImage(pedra, x_pedra[47] = 360, y_pedra[47] = 390, this);
+            g.drawImage(pedra, x_pedra[48] = 360, y_pedra[48] = 400, this);
+            g.drawImage(pedra, x_pedra[49] = 360, y_pedra[49] = 410, this);
+            g.drawImage(pedra, x_pedra[50] = 360, y_pedra[50] = 420, this);
+            g.drawImage(pedra, x_pedra[51] = 360, y_pedra[51] = 430, this);
+            g.drawImage(pedra, x_pedra[52] = 360, y_pedra[52] = 440, this);
+            g.drawImage(pedra, x_pedra[53] = 360, y_pedra[53] = 450, this);
+            g.drawImage(pedra, x_pedra[54] = 360, y_pedra[54] = 460, this);
+            g.drawImage(pedra, x_pedra[55] = 360, y_pedra[55] = 470, this);
+            g.drawImage(pedra, x_pedra[56] = 110, y_pedra[56] = 70, this);
+            g.drawImage(pedra, x_pedra[57] = 110, y_pedra[57] = 80, this);
+            // ALTERAÇÃO NAS PEDRAS DA LINHA
+            // } FIM <-----------
             }
-
             for (int z = 0; z < tamanhoSnake; z++) {
                 if (z == 0) {
                     g.drawImage(head, x[z], y[z], this);
@@ -130,7 +183,7 @@ public class Tabela extends JPanel implements ActionListener {
             }
 
             Toolkit.getDefaultToolkit().sync();
-            g.drawString(macasColetadas + " Maças", 150, 540);
+            g.drawString(contadorMaca + " Maças", 150, 540);
             g.drawString("Tempo: " + ((contadorCronometro/1000))/60 + ":"+ ((contadorCronometro/1000)%60), 360,540);
             
             Font smallFont2 = new Font ("Helvetica", Font.BOLD, 13);
@@ -155,17 +208,13 @@ public class Tabela extends JPanel implements ActionListener {
     }
 
     private void checarApple() {
-        for (int i = 0; i < totalMacas; i++) {
-            if ((x[0] == maca_x[i]) && (y[0] == maca_y[i])) {
-                tamanhoSnake++;
-                macasColetadas++;
-                maca_x[i] = -20;
-                maca_y[i] = -20;
-                totalMacasColetadas++;
-                if (macasColetadas == 3) {
-                    vidas++;
-                    macasColetadas = 0;
-                }
+        if ((x[0] == maca_x) && (y[0] == maca_y)) {
+            tamanhoSnake++;
+            localizacaoApple();
+            contadorMaca++;
+            if (contadorMaca == 5) {
+                vidas++;
+                contadorMaca = 0;
             }
         }
     }
@@ -244,7 +293,7 @@ public class Tabela extends JPanel implements ActionListener {
     private void reset() {
         vidas--;
         verificaVida();
-        macasColetadas = 0;
+        contadorMaca = 0;
         timer.stop();
         inicioGame();
         if (direcaoEsquerda) {
@@ -254,53 +303,21 @@ public class Tabela extends JPanel implements ActionListener {
 
     }
 
-    private boolean objetoOuNao() {
-        int r = (int) (Math.random() * 100);
-        if (r <= 1) {
-            return true;
-        }
-        return false;
-    }
-
-    private void localizacaoPedra() {
-        for (int x = 0; x < B_WIDTH; x += 10) {
-            for (int y = 0; y < B_HEIGHT; y += 10){
-                if (objetoOuNao()) {
-                    if (quantidadePedras >= 10) {
-                        break;
-                    }
-                    x_pedra[quantidadePedras] = x;
-                    y_pedra[quantidadePedras] = y;
-                    quantidadePedras++;
-                }
-            }
-        }
-    }
-
     private void localizacaoApple() {
-        for (int x = 0; x < B_WIDTH; x += 10) {
-            for (int y = 0; y < B_HEIGHT; y += 10){
-                if (objetoOuNao()) {
-                    if (totalMacas >= 15) {
-                        break;
-                    }
-                    if (checarMacaObstaculo(x, y)) {
-                        maca_x[totalMacas] = x;
-                        maca_y[totalMacas] = y;
-                        totalMacas++;
-                    }
-                }
-            }
-        }
+        int r = (int) (Math.random() * RAND_POS);
+        maca_x = ((r * DOT_SIZE));
+
+        r = (int) (Math.random() * RAND_POS);
+        maca_y = ((r * DOT_SIZE));
+        checarMacaObstaculo();
     }
 
-    private boolean checarMacaObstaculo(int x, int y) {
-        for (int i = 0; i < totalMacas; i++) {
-            if ((x_pedra[i] == x) && (y_pedra[i] == y)) {
-                return false;
+    private void checarMacaObstaculo() {
+        for (int i = 0; i < 58; i++) {
+            if ((x_pedra[0] == maca_x) && (y_pedra[0] == maca_y)) {
+                localizacaoApple();
             }
         }
-        return true;
     }
 
     @Override
