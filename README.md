@@ -15,6 +15,10 @@ Um jogo simples desenvolvido em Java, chamado Skane, inspirado no clássico jogo
 
 Antes de começar, certifique-se de ter o JDK 19 (ou versão superior) instalado e configurado no seu ambiente de desenvolvimento.
 
+## Demonstração
+
+![Alt Text](./snake.gif)
+
 ## Como Usar
 
 Clone o repositório:
